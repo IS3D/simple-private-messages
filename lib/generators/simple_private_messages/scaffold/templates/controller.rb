@@ -20,7 +20,7 @@ class <%= plural_camel_case_name %>Controller < ApplicationController
     if params[:reply_to]
       @reply_to = @<%= singular_lower_case_parent %>.received_messages.find(params[:reply_to])
       unless @reply_to.nil?
-        @<%= singular_lower_case_name %>.to = @reply_to.sender.login
+        @<%= singular_lower_case_name %>.to = @reply_to.sender.email
         @<%= singular_lower_case_name %>.subject = "Re: #{@reply_to.subject}"
         @<%= singular_lower_case_name %>.body = "\n\n*Original message*\n\n #{@reply_to.body}"
       end
@@ -30,7 +30,7 @@ class <%= plural_camel_case_name %>Controller < ApplicationController
   def create
     @<%= singular_lower_case_name %> = <%= singular_camel_case_name %>.new(params[:<%= singular_lower_case_name %>])
     @<%= singular_lower_case_name %>.sender = @<%= singular_lower_case_parent %>
-    @<%= singular_lower_case_name %>.recipient = <%= singular_camel_case_parent %>.find_by_login(params[:<%= singular_lower_case_name %>][:to])
+    @<%= singular_lower_case_name %>.recipient = <%= singular_camel_case_parent %>.find_by_email(params[:<%= singular_lower_case_name %>][:to])
 
     if @<%= singular_lower_case_name %>.save
       flash[:notice] = "Message sent"
