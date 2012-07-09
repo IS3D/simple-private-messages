@@ -1,0 +1,25 @@
+.page-header
+	%h2
+		Sent
+		.pull-right
+			= link_to "Inbox", messages_path, :class => "btn"
+
+- unless @messages.blank?
+	%table.table.table-striped.message-list
+		%thead
+			%tr
+				%th Del?
+				%th Subject
+				%th To
+				%th Sent
+		%tbody
+			- @messages.each do |m|
+				%tr
+					%td= check_box_tag "delete[]", m.id
+					%td= link_to h(m.subject), message_path(m)
+					%td= link_to h(m.recipient), student_path(m.recipient)
+					%td= h m.created_at.to_s(:long)
+	= submit_tag "Delete", :class => "btn btn-danger"
+
+- else
+	%p No messages.

@@ -1,0 +1,31 @@
+.page-header
+	%h1
+		Inbox
+		.pull-right
+			= link_to "Sent", messages_path(:mailbox => :sent), :class => "btn"
+			= link_to "Compose", new_message_path, :class => "btn"
+
+- unless @messages.blank?
+	%table.table.table-striped.message-list
+		%thead
+			%tr
+				%th Del?
+				%th Subject
+				%th To
+				%th Sent
+		%tbody
+			- @messages.each do |m|
+				%tr
+					%td= check_box_tag "delete[]", m.id
+					%td
+						- if m.message_read?
+							= link_to h(m.subject), message_path(m)
+						- else
+							= link_to "#{h(m.subject)} (unread)", message_path(m)
+					%td= link_to h(m.sender), student_path(m.sender)
+					%td= h m.created_at.to_s(:long)
+
+	= submit_tag "Delete", :class => "btn btn-danger"
+
+- else
+	%p No messages.

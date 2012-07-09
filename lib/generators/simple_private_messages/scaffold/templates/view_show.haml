@@ -1,0 +1,22 @@
+.page-header
+	%h1
+		= @message.subject
+		.pull-right
+			= link_to "Reply", new_message_path(:reply_to => @message), :class => "btn btn-info"
+			= link_to "Inbox", messages_path, :class => "btn"
+%p
+	%strong From: 
+	= @message.sender == @user ? link_to("You", user_path(@user)) : link_to(h(@message.sender), user_path(@message.sender))
+%p
+	%strong Received: 
+	= @message.created_at.to_s(:long)
+%p
+	%strong To: 
+	= @message.recipient == @user ? link_to("You", user_path(@user)) : link_to(h(@message.recipient), user_path(@message.recipient))
+%p
+	%strong Message
+	%br/
+	= h @message.body
+%p
+	- if @message.recipient == @user
+		= link_to "Reply", new_message_path(:reply_to => @message), :class => "btn"
