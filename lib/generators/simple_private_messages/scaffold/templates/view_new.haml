@@ -7,7 +7,7 @@
 = form_for @message, :url => messages_path do |f|
   %p
     = f.label :to
-    = f.text_field :to, :class => "span4"
+    = f.text_field :to, :class => "span4", :autocomplete => "off", "data-provide" => "typeahead", "data-source" => @users.to_json
     = error_message_on @message, :to
   %p
     = f.label :subject

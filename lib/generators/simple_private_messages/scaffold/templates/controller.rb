@@ -4,9 +4,9 @@ class <%= plural_camel_case_name %>Controller < ApplicationController
   
   def index
     if params[:mailbox] == "sent"
-      @<%= plural_lower_case_name %> = @<%= singular_lower_case_parent %>.sent_messages
+      @<%= plural_lower_case_name %> = @<%= singular_lower_case_parent %>.sent_messages.page(params[:page])
     else
-      @<%= plural_lower_case_name %> = @<%= singular_lower_case_parent %>.received_messages
+      @<%= plural_lower_case_name %> = @<%= singular_lower_case_parent %>.received_messages.page(params[:page])
     end
   end
   

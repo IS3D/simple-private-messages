@@ -3,3 +3,5 @@
 		= render :partial => "sent"
 	- else 
 		= render :partial => "inbox"
+
+= will_paginate @messages

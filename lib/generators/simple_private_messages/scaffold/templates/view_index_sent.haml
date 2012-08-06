@@ -17,7 +17,7 @@
 				%tr
 					%td= check_box_tag "delete[]", m.id
 					%td= link_to h(m.subject), message_path(m)
-					%td= link_to h(m.recipient), student_path(m.recipient)
+					%td= m.recipient ? m.recipient : "Account Inactive"
 					%td= h m.created_at.to_s(:long)
 	= submit_tag "Delete", :class => "btn btn-danger"
 
