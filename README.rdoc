@@ -1,5 +1,12 @@
 = Simple Private Messages
 
+= Note about this fork
+This fork has been modified to use Haml views and Bootstrap. It's also been modified to follow Devise conventions more. If you want to use the Typeahead js plugin from Bootstrap, you'll need to modify your new method to contain @users that map to whatever field you want them searching by.
+
+This fork wasn't really built with public consumption in mind, but I tried to include changes I made locally back to this in case other people wanted to try and use it. If you have questions, feel free to send me a message.
+
+= Back to the original readme...
+
 Now Rails 3 compatible!
 
 For Rails 2.3.x users there is an appropriately named branch that can be used.
